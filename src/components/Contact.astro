@@ -1,0 +1,80 @@
+---
+import { companyData } from '../data/company';
+---
+
+<section id="contact" class="section-padding bg-gray-50">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="heading-md mb-4">🎄 Schedule Your Free Holiday Lighting Consultation</h2>
+      <p class="text-lead text-gray-600 max-w-2xl mx-auto">
+        Ready to transform your home into a holiday wonderland? Choose a convenient time for your free, no-obligation design consultation with Lit Noel—always backed by our satisfaction guarantee.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Calendly Scheduling Widget -->
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <h3 class="text-2xl font-semibold text-gray-900 mb-6">🎄 Schedule Your Design Consultation</h3>
+        <div class="mb-4">
+          <p class="text-gray-600 text-sm mb-4">
+            <strong>How it works:</strong> Choose your preferred date and time for an on-site design consultation. We'll call you within 24 hours to confirm your appointment, then visit your property at the scheduled time to create your custom holiday lighting design and provide your free quote.
+          </p>
+        </div>
+        
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/litnoel/free-holiday-lighting-consultation?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-900 mb-6">📞 Prefer to Call? We're Here for You</h3>
+          <div class="space-y-4">
+            <a href={`tel:${companyData.phone}`} class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <div>
+                <div class="font-semibold text-gray-900">🎄 Call for Holiday Lighting Consultation</div>
+                <div class="text-primary-600">{companyData.phoneFormatted}</div>
+                <div class="text-sm text-gray-500">Most calls answered live during business hours</div>
+              </div>
+            </a>
+            <a href={`mailto:${companyData.email}`} class="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <div>
+                <div class="font-semibold text-gray-900">Email Us</div>
+                <div class="text-primary-600">{companyData.email}</div>
+                <div class="text-sm text-gray-500">We respond to emails within 24 hours</div>
+              </div>
+            </a>
+            <div class="flex items-center p-4 bg-white rounded-lg shadow">
+              <div>
+                <div class="font-semibold text-gray-900">Service Coverage</div>
+                <div class="text-gray-600">Carroll, Coweta, Muscogee Counties and surrounding area</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            Business Hours
+          </h4>
+          <div class="bg-white rounded-lg shadow p-4 space-y-2">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Monday - Friday</span>
+              <span class="font-medium">{companyData.hours.monday}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Saturday</span>
+              <span class="font-medium">{companyData.hours.saturday}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Sunday</span>
+              <span class="font-medium">{companyData.hours.sunday}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> 

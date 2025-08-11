@@ -1,0 +1,76 @@
+---
+import ServiceLayout from '../../components/ServiceLayout.astro';
+import { getService } from '../../data/services';
+import { getLocationBySlug } from '../../data/locations';
+
+// EXAMPLE: Replace 'christmas-light-installation' with your actual service ID
+const serviceData = getService('christmas-light-installation');
+// EXAMPLE: Replace 'downtown' with your actual location slug
+const locationData = getLocationBySlug('downtown');
+
+if (!serviceData || !locationData) {
+  throw new Error('Required data not found - check your service and location IDs');
+}
+
+// EXAMPLE: Customize FAQ answers for this specific location/service combination
+const localizedFaqItems = serviceData.faqItems.map(faq => ({
+  ...faq,
+  question: faq.question.includes('[SERVICE NAME]') ? 
+    faq.question.replace('[SERVICE NAME]', serviceData.name) : 
+    faq.question,
+  answer: faq.answer.includes('[TIME PERIOD]') ?
+    faq.answer.replace('[TIME PERIOD]', 'holiday season') :
+    faq.answer.includes('[LOCATION]') ?
+    faq.answer.replace('[LOCATION]', locationData.name) :
+    faq.answer
+}));
+---
+
+<ServiceLayout 
+  title="{serviceData.name} {locationData.name} | Lit Noel Professional Holiday Lighting"
+  description="Professional {serviceData.name.toLowerCase()} services in {locationData.name}. {serviceData.description.substring(0, 150)}... Licensed & insured. Get free consultation!"
+  serviceName={serviceData.name}
+  locationName={locationData.name}
+  serviceIcon={serviceData.icon}
+  serviceDescription={serviceData.description}
+  processSteps={serviceData.processSteps}
+  benefits={serviceData.benefits}
+  faqItems={localizedFaqItems}
+>
+  <div slot="detailed-description">
+    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+      Our professional {serviceData.name.toLowerCase()} service delivers exceptional results for residential and commercial properties throughout the {locationData.name} area. We use commercial-grade LED lights and proven installation methods to create stunning holiday displays.
+    </p>
+    <p class="text-gray-600 text-lg leading-relaxed mb-4">
+      Perfect for homes and businesses, our service transforms your property into a magical winter wonderland. We understand the unique needs of {locationData.name} properties and provide customized lighting solutions that enhance your property's architecture.
+    </p>
+    <p class="text-gray-600 text-lg leading-relaxed">
+      As your local holiday lighting specialists in {locationData.name}, we're committed to providing reliable, professional service that exceeds your expectations every holiday season. From design to removal, we handle everything so you can enjoy stress-free holidays.
+    </p>
+  </div>
+</ServiceLayout>
+
+<!-- 
+INSTRUCTIONS FOR CREATING YOUR SERVICE PAGES:
+
+1. Copy this file for each service + location combination you want to target
+2. Rename the file to: [service-name]-[location-name].astro
+   Example: christmas-light-installation-northside.astro
+
+3. Update the serviceData line to use your actual service ID from services.ts
+4. Update the locationData line to use your actual location slug from locations.ts
+
+5. Customize the title and description with your business name and service details
+6. Update the detailed-description slot with service-specific content for this location
+7. Customize the localizedFaqItems if you want location-specific FAQ variations
+
+8. Test the page works correctly before publishing
+
+EXAMPLE FILE NAMES:
+- christmas-light-installation-downtown.astro
+- holiday-light-leasing-midtown.astro  
+- commercial-services-northside.astro
+- design-consultation-lakewood.astro
+
+Remember: Create one page for each service you want to rank for in each location you serve!
+-->

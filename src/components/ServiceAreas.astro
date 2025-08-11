@@ -1,0 +1,116 @@
+---
+// No icon imports needed
+---
+
+<section id="service-areas" class="section-padding bg-white">
+  <div class="container-max">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold mb-2">
+        Proudly Serving Our West Georgia Neighbors
+      </h2>
+      <p class="text-lead text-gray-600 max-w-2xl mx-auto">
+        When you call WaterBoys, you're calling your neighbors who truly care about keeping our area looking its best.
+      </p>
+    </div>
+    
+    <!-- County Badges -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <a href="/pressure-washing-carroll-county-ga/" class="bg-primary-50 border-2 border-primary-200 text-primary-700 px-6 py-4 rounded-lg text-lg font-semibold shadow-md hover:bg-primary-100 hover:border-primary-300 transition-all duration-200 cursor-pointer">
+        Carroll County
+      </a>
+      <div class="bg-primary-50 border-2 border-primary-200 text-primary-700 px-6 py-4 rounded-lg text-lg font-semibold shadow-md">
+        Coweta County
+      </div>
+      <div class="bg-primary-50 border-2 border-primary-200 text-primary-700 px-6 py-4 rounded-lg text-lg font-semibold shadow-md">
+        Muscogee County
+      </div>
+    </div>
+    
+    <!-- Lazy-loaded Google Map -->
+    <div class="flex justify-center mb-8">
+      <div class="w-full max-w-md sm:max-w-lg md:max-w-xl">
+        <!-- Map placeholder - shown initially -->
+        <div 
+          id="map-placeholder"
+          class="rounded-2xl shadow-lg w-full h-80 bg-gradient-to-br from-primary-50 to-primary-100 flex flex-col items-center justify-center cursor-pointer hover:shadow-xl transition-all duration-300 border-2 border-primary-200 hover:border-primary-400"
+        >
+          <div class="text-center p-6">
+            <p class="text-primary-700 text-lg font-medium">Click to load interactive map showing our service coverage area</p>
+          </div>
+        </div>
+        
+        <!-- Actual map - hidden initially -->
+        <div 
+          id="map-container" 
+          class="hidden"
+        >
+          <!-- Map will be injected here when clicked -->
+        </div>
+        
+        <!-- Fallback for users with JavaScript disabled -->
+        <noscript>
+          <div
+            class="rounded-2xl shadow-lg w-full h-80 bg-gray-200 flex items-center justify-center"
+          >
+            <p class="text-gray-600 text-center p-6">Map showing WaterBoys service area covering Carroll, Coweta, and Muscogee Counties in West Georgia</p>
+          </div>
+        </noscript>
+      </div>
+    </div>
+
+    <script>
+      // Wait for DOM to be ready
+      document.addEventListener('DOMContentLoaded', function() {
+        const placeholder = document.getElementById('map-placeholder');
+        const container = document.getElementById('map-container');
+        
+        if (!placeholder || !container) {
+          console.log('Map elements not found');
+          return;
+        }
+        
+        // Add click event listener
+        placeholder.addEventListener('click', function() {
+          console.log('Map loading triggered');
+          
+          // Hide placeholder
+          placeholder.style.display = 'none';
+          
+          // Show container
+          container.classList.remove('hidden');
+          
+          // Add loading animation first
+          container.innerHTML = '<div class="flex items-center justify-center h-80 rounded-2xl bg-gray-100"><div class="text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto mb-2"></div><p class="text-gray-600">Loading map...</p></div></div>';
+          
+          // Create and inject the iframe after brief delay
+          setTimeout(() => {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207155.80652896913!2d-85.07678619999999!3d33.566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x888c8d8a87c7b2f7%3A0x8d2b8e8b2e7c8a9b!2sCarroll%20County%2C%20GA!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus';
+            iframe.width = '600';
+            iframe.height = '400';
+            iframe.style.cssText = 'border:0; border-radius: 1rem; width:100%; height:320px;';
+            iframe.allowFullscreen = true;
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'no-referrer-when-downgrade';
+            iframe.title = 'Interactive map of WaterBoys service area: Carroll, Coweta, and Muscogee Counties';
+            
+            // Clear loading animation and add iframe
+            container.innerHTML = '';
+            container.appendChild(iframe);
+            
+            console.log('Map loaded successfully');
+          }, 800);
+        });
+      });
+    </script>
+    
+    <div class="text-center">
+      <p class="text-gray-600 mb-4">
+        Don't see your county? Give us a call—we may still be able to help!
+      </p>
+      <a href="#contact" class="btn-primary">
+        Check if We Serve You
+      </a>
+    </div>
+  </div>
+</section> 

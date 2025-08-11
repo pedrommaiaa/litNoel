@@ -1,0 +1,180 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = 'Christmas Light Installation Cobb County | Lit Noel',
+	description = 'Professional Christmas light installation and leasing services in Cobb County. Serving Marietta, Kennesaw, Smyrna & more. Free quotes. Licensed & insured.'
+} = Astro.props;
+
+let canonicalURL = '';
+if (Astro.site) {
+	canonicalURL = `${Astro.site.toString().replace(/\/$/, '')}${Astro.url.pathname}`;
+} else {
+	canonicalURL = Astro.url.pathname;
+}
+
+// Structured data for local business
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": "Lit Noel",
+	"description": "Professional Christmas light installation and leasing services - bringing holiday magic to homes and businesses throughout Cobb County",
+	"url": "https://litnoel.com",
+	"logo": "https://litnoel.com/logo-icon-with-name.webp",
+	"image": "https://litnoel.com/images/business-image.webp",
+	"telephone": "+17705555483",
+	"email": "hello@litnoel.com",
+	"address": {
+		"@type": "PostalAddress",
+		"addressRegion": "ST",
+		"addressCountry": "US"
+	},
+	"areaServed": [
+		{ "@type": "City", "name": "Downtown", "addressRegion": "Metro" },
+		{ "@type": "City", "name": "Northside", "addressRegion": "Metro" },
+		{ "@type": "City", "name": "Midtown", "addressRegion": "Metro" },
+		{ "@type": "City", "name": "Lakewood", "addressRegion": "Metro" }
+	],
+	"serviceArea": {
+		"@type": "State",
+		"name": "Greater Metro Area"
+	},
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"telephone": "+15555444487",
+		"contactType": "customer service",
+		"availableLanguage": "English"
+	},
+	"openingHours": [
+		"Mo-Fr 09:00-19:00",
+		"Sa 08:00-18:00",
+		"Su 10:00-17:00"
+	],
+	"priceRange": "$$",
+	"hasOfferCatalog": {
+		"@type": "OfferCatalog",
+		"name": "Holiday Lighting Services Greater Metro Area",
+		"itemListElement": [
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Christmas Light Installation Greater Metro Area",
+					"description": "Professional custom Christmas light installation for homes and businesses"
+				}
+			},
+			{
+				"@type": "Offer", 
+				"itemOffered": {
+					"@type": "Service",
+					"name": "Holiday Light Leasing Greater Metro Area",
+					"description": "Premium LED light leasing with storage and maintenance included"
+				}
+			},
+			{
+				"@type": "Offer",
+				"itemOffered": {
+					"@type": "Service", 
+					"name": "Commercial Holiday Lighting Greater Metro Area",
+					"description": "Professional holiday lighting for businesses and commercial properties"
+				}
+			}
+		]
+	}
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,address=no,email=no" />
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="keywords" content="Christmas light installation, holiday lighting services, Christmas light leasing, professional Christmas lights, holiday light installation, Christmas light removal, commercial holiday lighting, residential Christmas lights, LED Christmas lights, holiday decorations" />
+		<meta name="author" content="Lit Noel" />
+		<meta name="creator" content="Lit Noel" />
+		<meta name="publisher" content="Lit Noel" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Favicon and Icons -->
+		<link rel="icon" type="image/webp" href="/logo-icon.webp" />
+		<link rel="apple-touch-icon" href="/logo-icon.webp" />
+		
+		<!-- Open Graph Meta Tags -->
+		<meta property="og:title" content="Professional Christmas Light Installation & Leasing | Lit Noel" />
+		<meta property="og:description" content="Professional Christmas light installation and leasing services in the Greater Metro Area. We handle everything from design to takedown for stress-free holidays. Licensed & insured." />
+		<meta property="og:url" content="https://litnoel.com" />
+		<meta property="og:site_name" content="Lit Noel" />
+		<meta property="og:image" content="https://litnoel.com/logo-icon-with-name.webp" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Lit Noel Logo - Holiday Lighting Services" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="website" />
+		
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Professional Christmas Light Installation - Lit Noel" />
+		<meta name="twitter:description" content="Professional Christmas light installation and leasing services. We handle everything from design to takedown for stress-free holidays. Licensed & insured." />
+		<meta name="twitter:image" content="https://litnoel.com/logo-icon-with-name.webp" />
+		<meta name="twitter:creator" content="@LitNoel" />
+		
+		<!-- Additional SEO Meta Tags -->
+		<meta name="theme-color" content="#a73519" />
+		<meta name="msapplication-TileColor" content="#a73519" />
+		
+		<!-- Robots Meta Tags -->
+		<meta name="robots" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+		<meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+		<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" /></noscript>
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		
+		<!-- Google Analytics - REPLACE WITH YOUR TRACKING ID -->
+		<script is:inline>
+			// Check if user has opted out before loading analytics
+			if (localStorage.getItem('analytics-opted-out') !== 'true') {
+				// Load Google Analytics - REPLACE 'YOUR-GA-ID' with your actual tracking ID
+				var script = document.createElement('script');
+				script.async = true;
+				script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID';
+				document.head.appendChild(script);
+				
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', 'YOUR-GA-ID');
+			}
+		</script>
+	</head>
+	<body class="antialiased">
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

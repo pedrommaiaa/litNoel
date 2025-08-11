@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy | WaterBoys Pressure Washing">
+	<Header />
+	
+	<!-- Privacy Policy Content -->
+	<main class="bg-gray-50 py-16">
+		<div class="container-max">
+			<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12">
+				<!-- Header Section -->
+				<div class="text-center mb-12">
+					<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+					<div class="w-24 h-1 bg-primary-600 mx-auto rounded-full mb-6"></div>
+					<p class="text-lg text-gray-600">Effective Date: January 22, 2025</p>
+				</div>
+
+				<!-- Content -->
+				<div class="prose prose-lg max-w-none">
+					<p class="text-lg text-gray-700 mb-8 leading-relaxed">
+						WaterBoys Pressure Washing ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our website or contact us for services.
+					</p>
+
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+							<span class="bg-primary-100 text-primary-600 p-2 rounded-lg mr-3">📋</span>
+							Information We Collect
+						</h2>
+						<ul class="space-y-4 text-gray-700">
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>
+									<strong class="text-gray-900">Contact Information:</strong> When you fill out our contact form or schedule through Calendly, we collect your name, phone number, email address, and any message you provide.
+								</div>
+							</li>
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>
+									<strong class="text-gray-900">Website Analytics:</strong> We use Google Analytics to understand how visitors use our website, including page views, time spent, and general location data.
+								</div>
+							</li>
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>
+									<strong class="text-gray-900">Cookies:</strong> Our website uses cookies for Google Analytics tracking and Calendly scheduling functionality. These help us improve our website and booking process.
+								</div>
+							</li>
+						</ul>
+					</section>
+
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+							<span class="bg-primary-100 text-primary-600 p-2 rounded-lg mr-3">🔧</span>
+							How We Use Your Information
+						</h2>
+						<ul class="space-y-4 text-gray-700">
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>To respond to your inquiries and provide pressure washing services.</div>
+							</li>
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>To follow up with you about your request or service.</div>
+							</li>
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>To improve our website and customer experience.</div>
+							</li>
+							<li class="flex items-start">
+								<span class="text-primary-600 mr-3 mt-1">•</span>
+								<div>
+									<strong class="text-gray-900">We do NOT sell or share your information with third parties for marketing purposes.</strong>
+								</div>
+							</li>
+						</ul>
+					</section>
+
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+							<span class="bg-primary-100 text-primary-600 p-2 rounded-lg mr-3">🛡️</span>
+							How We Protect Your Information
+						</h2>
+						<p class="text-gray-700 leading-relaxed">
+							We use reasonable security measures to protect your information. However, no method of transmission over the Internet is 100% secure.
+						</p>
+					</section>
+
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+							<span class="bg-primary-100 text-primary-600 p-2 rounded-lg mr-3">⚖️</span>
+							Opt-Out of Tracking
+						</h2>
+						<p class="text-gray-700 leading-relaxed">
+							You can opt out of all website tracking and analytics at any time by 
+							<button 
+								id="opt-out-btn" 
+								class="text-primary-600 hover:text-primary-700 underline font-normal bg-transparent border-none cursor-pointer p-0 inline"
+							>
+								clicking here
+							</button>. This will disable Google Analytics and other tracking technologies for your browser.
+						</p>
+						<p id="opt-out-status" class="text-sm text-gray-600 mt-2 hidden"></p>
+					</section>
+
+					<section class="mb-10">
+						<h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+							<span class="bg-primary-100 text-primary-600 p-2 rounded-lg mr-3">📞</span>
+							Contact Us
+						</h2>
+						<p class="text-gray-700 leading-relaxed">
+							If you have any questions about this Privacy Policy, please contact us at 
+							<a href="mailto:waterboysfcc@gmail.com" class="text-primary-600 hover:text-primary-700 font-semibold underline">
+								waterboysfcc@gmail.com
+							</a> or 
+							<a href="tel:(470) 817-7453" class="text-primary-600 hover:text-primary-700 font-semibold underline">
+								(470) 817-7453
+							</a>.
+						</p>
+					</section>
+
+					<!-- Back to Home Button -->
+					<div class="text-center mt-12 pt-8 border-t border-gray-200">
+						<a 
+							href="/"
+							class="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-300 hover:transform hover:scale-105 shadow-lg"
+						>
+							🏠 Back to Home
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<Footer />
+	
+	<script>
+		// Opt-out functionality
+		document.addEventListener('DOMContentLoaded', function() {
+			const optOutBtn = document.getElementById('opt-out-btn') as HTMLButtonElement;
+			const optOutStatus = document.getElementById('opt-out-status');
+			
+			if (!optOutBtn || !optOutStatus) return;
+			
+			// Check if user has already opted out
+			if (localStorage.getItem('analytics-opted-out') === 'true') {
+				optOutBtn.textContent = 'already opted out';
+				optOutBtn.disabled = true;
+				optOutBtn.className = 'text-gray-500 font-normal bg-transparent border-none cursor-not-allowed p-0 inline';
+				optOutStatus.textContent = 'Tracking is disabled for your browser.';
+				optOutStatus.classList.remove('hidden');
+				optOutStatus.className = 'text-sm text-green-600 mt-2';
+			}
+			
+			optOutBtn.addEventListener('click', function() {
+				// Set opt-out flag
+				localStorage.setItem('analytics-opted-out', 'true');
+				
+				// Disable Google Analytics
+				if (typeof (window as any).gtag !== 'undefined') {
+					(window as any).gtag('consent', 'update', {
+						'analytics_storage': 'denied'
+					});
+				}
+				
+				// Update button appearance
+				optOutBtn.textContent = 'already opted out';
+				optOutBtn.disabled = true;
+				optOutBtn.className = 'text-gray-500 font-normal bg-transparent border-none cursor-not-allowed p-0 inline';
+				
+				// Show success message
+				optOutStatus.textContent = 'Successfully opted out! Tracking is now disabled for your browser.';
+				optOutStatus.classList.remove('hidden');
+				optOutStatus.className = 'text-sm text-green-600 mt-2';
+			});
+		});
+	</script>
+</Layout> 
