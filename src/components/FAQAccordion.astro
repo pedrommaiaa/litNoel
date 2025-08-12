@@ -27,6 +27,21 @@ const { items = defaultItems } = Astro.props;
       ))}
     </div>
   </div>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: (Astro.props.items || [
+      { q: 'How long does installation take?', a: 'Most homes take 3–6 hours depending on size and complexity. Larger commercial projects may take a full day.' },
+      { q: 'Do you provide the lights?', a: 'Yes. We provide commercial‑grade LED lights and all materials, and we handle installation, maintenance, and removal.' },
+      { q: 'What happens if lights go out during the season?', a: 'Just call us. We repair or replace any issues quickly, typically within 24–48 hours.' },
+      { q: 'When do you remove the lights?', a: 'We typically schedule removal in early January and work with your preferred timing and any HOA requirements.' },
+      { q: 'Do I need to be home during installation or removal?', a: 'Not required. We coordinate timing with you and handle everything professionally.' }
+    ]).map((it: { q: string; a: string }) => ({
+      '@type': 'Question',
+      name: it.q,
+      acceptedAnswer: { '@type': 'Answer', text: it.a }
+    }))
+  })} />
 </section>
 
 

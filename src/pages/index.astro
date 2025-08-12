@@ -12,7 +12,7 @@ import FAQAccordion from '../components/FAQAccordion.astro';
 import ContactSchedule from '../components/ContactSchedule.astro';
 ---
 
-<Layout title={`${companyData.tagline} | ${companyData.name}`}>
+<Layout title={`${companyData.tagline} | ${companyData.name}`} description={companyData.description} ogTitle={`${companyData.tagline} | ${companyData.name}`} ogDescription={companyData.description}>
   <main>
     <SiteHeader />
     <div class="pt-12"></div>

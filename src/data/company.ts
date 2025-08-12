@@ -2,14 +2,14 @@ export const companyData = {
   // Basic Company Info
   name: "Lit Noel",
   domain: "litnoel.com",
-  phone: "770-555-LITE",
-  phoneFormatted: "(770) 555-5483",
+  phone: "+14707806868",
+  phoneFormatted: "(470) 780-6868",
   email: "litnoelteam@gmail.com",
   
   // Business Details
   businessType: "Christmas Light Installation",
   tagline: "Hassle-Free Christmas Light Installation",
-  description: "Professional Christmas light installation throughout Cobb County. We handle everything from design to takedown so you can enjoy a beautifully lit property without the hassle.",
+  description: "Professional Christmas light installation across West Georgia & Metro Atlanta. We handle everything from design to takedown so you can enjoy a beautifully lit property without the hassle.",
   
   // Services
   services: [
@@ -95,12 +95,6 @@ export const companyData = {
       location: "East Cobb",
       rating: 5,
       text: "Lit Noel transformed our home into a winter wonderland! The design was beautiful and the installation was flawless. No more dangerous ladder climbing for us!"
-    },
-    {
-      name: "Mike R.", 
-      location: "Kennesaw",
-      rating: 5,
-      text: "The leasing option is genius - premium lights without the storage headache. Their maintenance service kept everything perfect all season long."
     },
     {
       name: "Jennifer L.",

@@ -2,14 +2,20 @@
 import '../styles/global.css';
 
 export interface Props {
-	title?: string;
-	description?: string;
+    title?: string;
+    description?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
 }
 
 const { 
-	title = 'Professional Christmas Light Installation | Lit Noel',
-	description = 'Professional Christmas light installation across West Georgia & Metro Atlanta. Design, install, maintenance, and takedown. Free quotes. Licensed & insured.'
-} = Astro.props;
+    title = 'Professional Christmas Light Installation | Lit Noel',
+    description = 'Professional Christmas light installation across West Georgia & Metro Atlanta. Design, install, maintenance, and takedown. Free quotes. Licensed & insured.',
+    ogTitle,
+    ogDescription,
+    ogImage
+} = Astro.props as Props;
 
 let canonicalURL = '';
 if (Astro.site) {
@@ -18,16 +24,21 @@ if (Astro.site) {
 	canonicalURL = Astro.url.pathname;
 }
 
+// Resolve OG values with fallbacks
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+const resolvedOgImage = ogImage ?? 'https://litnoel.com/hero-background.webp';
+
 // Structured data for local business
 const structuredData = {
 	"@context": "https://schema.org",
 	"@type": "LocalBusiness",
 	"name": "Lit Noel",
-	"description": "Professional Christmas light installation — design, install, maintenance, and takedown for homes and businesses across West Georgia & Metro Atlanta",
+	"description": "Professional Christmas light installation for homes and businesses across West Georgia & Metro Atlanta. Design, install, maintenance, and takedown.",
 	"url": "https://litnoel.com",
-	"logo": "https://litnoel.com/logo-icon-with-name.webp",
-	"image": "https://litnoel.com/images/business-image.webp",
-	"telephone": "+17705555483",
+	"logo": "https://litnoel.com/logo-icon.webp",
+	"image": "https://litnoel.com/hero-background.webp",
+	"telephone": "+14707806868",
 	"email": "litnoelteam@gmail.com",
 	"address": {
 		"@type": "PostalAddress",
@@ -35,18 +46,14 @@ const structuredData = {
 		"addressCountry": "US"
 	},
 	"areaServed": [
-		{ "@type": "City", "name": "Downtown", "addressRegion": "Metro" },
-		{ "@type": "City", "name": "Northside", "addressRegion": "Metro" },
-		{ "@type": "City", "name": "Midtown", "addressRegion": "Metro" },
-		{ "@type": "City", "name": "Lakewood", "addressRegion": "Metro" }
+		{ "@type": "AdministrativeArea", "name": "Cobb County" },
+		{ "@type": "AdministrativeArea", "name": "Paulding County" },
+		{ "@type": "AdministrativeArea", "name": "Douglas County" },
+		{ "@type": "AdministrativeArea", "name": "Carroll County" }
 	],
-	"serviceArea": {
-		"@type": "State",
-		"name": "Greater Metro Area"
-	},
 	"contactPoint": {
 		"@type": "ContactPoint",
-		"telephone": "+15555444487",
+		"telephone": "+14707806868",
 		"contactType": "customer service",
 		"availableLanguage": "English"
 	},
@@ -58,32 +65,11 @@ const structuredData = {
 	"priceRange": "$$",
 	"hasOfferCatalog": {
 		"@type": "OfferCatalog",
-		"name": "Holiday Lighting Services Greater Metro Area",
+		"name": "Holiday Lighting Services",
 		"itemListElement": [
-			{
-				"@type": "Offer",
-				"itemOffered": {
-					"@type": "Service",
-					"name": "Christmas Light Installation Greater Metro Area",
-					"description": "Professional custom Christmas light installation for homes and businesses"
-				}
-			},
-			{
-				"@type": "Offer", 
-				"itemOffered": {
-					"@type": "Service",
-					"name": "Holiday Light Leasing Greater Metro Area",
-					"description": "Premium LED light leasing with storage and maintenance included"
-				}
-			},
-			{
-				"@type": "Offer",
-				"itemOffered": {
-					"@type": "Service", 
-					"name": "Commercial Holiday Lighting Greater Metro Area",
-					"description": "Professional holiday lighting for businesses and commercial properties"
-				}
-			}
+			{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Christmas Light Installation", "description": "Custom Christmas light installation for homes and businesses" } },
+			{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "In‑Season Maintenance", "description": "Repair or adjust displays during the season" } },
+			{ "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Post‑Season Removal", "description": "Careful takedown and cleanup after the holidays" } }
 		]
 	}
 };
@@ -114,11 +100,11 @@ const structuredData = {
 		<link rel="preload" as="image" href="/hero-background.webp" imagesrcset="/hero-background.webp 1920w" imagesizes="100vw" />
 		
 		<!-- Open Graph Meta Tags -->
-		<meta property="og:title" content="Professional Christmas Light Installation | Lit Noel" />
-		<meta property="og:description" content="Professional Christmas light installation across West Georgia & Metro Atlanta. We handle design, install, maintenance, and takedown. Licensed & insured." />
-		<meta property="og:url" content="https://litnoel.com" />
+        <meta property="og:title" content={resolvedOgTitle} />
+        <meta property="og:description" content={resolvedOgDescription} />
+        <meta property="og:url" content={canonicalURL} />
 		<meta property="og:site_name" content="Lit Noel" />
-		<meta property="og:image" content="https://litnoel.com/logo-icon-with-name.webp" />
+        <meta property="og:image" content={resolvedOgImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content="Lit Noel Logo - Holiday Lighting Services" />
@@ -127,9 +113,9 @@ const structuredData = {
 		
 		<!-- Twitter Card Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Professional Christmas Light Installation - Lit Noel" />
-		<meta name="twitter:description" content="Professional Christmas light installation. We handle design, install, maintenance, and takedown. Licensed & insured." />
-		<meta name="twitter:image" content="https://litnoel.com/logo-icon-with-name.webp" />
+        <meta name="twitter:title" content={resolvedOgTitle} />
+        <meta name="twitter:description" content={resolvedOgDescription} />
+        <meta name="twitter:image" content={resolvedOgImage} />
 		<meta name="twitter:creator" content="@LitNoel" />
 		
 		<!-- Additional SEO Meta Tags -->

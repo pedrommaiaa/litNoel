@@ -19,7 +19,7 @@ const title = makeCityTitle(city.name);
 const description = makeCityDesc(city.name, county.name);
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} ogTitle={title} ogDescription={description}>
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
