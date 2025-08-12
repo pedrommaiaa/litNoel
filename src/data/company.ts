@@ -4,7 +4,7 @@ export const companyData = {
   domain: "litnoel.com",
   phone: "770-555-LITE",
   phoneFormatted: "(770) 555-5483",
-  email: "hello@litnoel.com",
+  email: "litnoelteam@gmail.com",
   
   // Business Details
   businessType: "Christmas Light Installation",

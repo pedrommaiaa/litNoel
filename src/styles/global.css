@@ -18,7 +18,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 64px;
+  scroll-padding-top: 48px; /* match fixed header height (h-12) */
 }
 
 @media (min-width: 768px) {

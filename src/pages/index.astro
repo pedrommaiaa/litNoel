@@ -7,7 +7,7 @@ import { serviceLocations } from '../data/locations.ts';
 <Layout title={`${companyData.tagline} | ${companyData.name}`}>
   <main>
     <!-- Header -->
-    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-[2000]">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-12">
           <div class="flex items-center">
@@ -53,7 +53,7 @@ import { serviceLocations } from '../data/locations.ts';
             <img
               src="/hero-background.webp"
               alt="Christmas light installation background"
-              class="object-cover w-full h-full blur-md"
+              class="object-cover w-full h-full"
               fetchpriority="high"
               width="1920"
               height="1280"
@@ -113,7 +113,7 @@ import { serviceLocations } from '../data/locations.ts';
             </div>
           </div>
           <p class="mt-8 text-lg text-center">
-            <a href="#solution" class="text-red-600 hover:text-red-700 font-semibold">We handle everything from design to takedown →</a>
+            <a href="#services" class="text-red-600 hover:text-red-700 font-semibold">We handle everything from design to takedown →</a>
           </p>
         </div>
       </div>
@@ -209,14 +209,47 @@ import { serviceLocations } from '../data/locations.ts';
     <!-- Service Areas -->
     <section id="areas" class="py-16 bg-red-900 text-white">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="max-w-5xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-bold mb-8">
             Proudly Serving West Georgia & Metro Atlanta
           </h2>
           <p class="text-lg md:text-xl mb-8 opacity-90">Residential and commercial installations across West Georgia and the greater Atlanta metro area.</p>
-          <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
-            Check Availability in Your Area
-          </a>
+
+          <!-- County Badges -->
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            {['Cobb County','Paulding County','Douglas County','Carroll County'].map((county) => (
+              <div class="bg-white/10 border-2 border-white/30 text-white px-6 py-3 rounded-lg text-base font-semibold shadow-md hover:bg-white/15 hover:border-white/50 transition-all duration-200 cursor-default">
+                {county}
+              </div>
+            ))}
+          </div>
+
+          <!-- Lazy-loaded map -->
+          <div class="flex justify-center mb-10">
+            <div class="w-full max-w-md sm:max-w-lg md:max-w-2xl">
+              <!-- Placeholder (shows first) -->
+              <div
+                id="service-area-map-placeholder"
+                class="rounded-2xl shadow-lg w-full h-80 bg-white/10 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40"
+                aria-label="Load interactive service area map"
+              >
+                <div class="text-center p-6">
+                  <p class="text-white/90 text-base md:text-lg font-medium">Tap to load an interactive map of our service coverage</p>
+                </div>
+              </div>
+
+              <!-- Actual map (hidden initially) -->
+              <div id="service-area-map-container" class="hidden"></div>
+
+              <noscript>
+                <div class="rounded-2xl shadow-lg w-full h-80 bg-white/20 flex items-center justify-center">
+                  <p class="text-white/90 text-center p-6">Map showing our coverage across West Georgia and the Atlanta metro area</p>
+                </div>
+              </noscript>
+            </div>
+          </div>
+          <p class="text-white/90 mb-4">Don't see your county? Give us a call—we may still be able to help!</p>
+          <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 py-3 rounded-lg text-base font-semibold transition-colors">Check Availability in Your Area</a>
         </div>
       </div>
     </section>
@@ -243,7 +276,7 @@ import { serviceLocations } from '../data/locations.ts';
                 <span class="text-lg font-semibold text-gray-900">Do you provide the lights?</span>
                 <span class="ml-4 text-gray-500 group-open:rotate-180 transition-transform">⌄</span>
               </summary>
-              <div class="mt-3 text-gray-700">Yes. We supply commercial‑grade LED lights through our leasing service and handle install, maintenance, and removal.</div>
+              <div class="mt-3 text-gray-700">Yes. We provide commercial‑grade LED lights and all materials, and we handle installation, maintenance, and removal.</div>
             </details>
 
             <details class="group p-5">
@@ -276,13 +309,45 @@ import { serviceLocations } from '../data/locations.ts';
 
     
 
-    <!-- Contact Form -->
+    <!-- Contact / Scheduling -->
     <section id="contact" class="py-16 bg-gray-100">
       <div class="container mx-auto px-4">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-6xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-gray-900">Ready to Light Up Your Holidays?</h2>
           <p class="text-center text-gray-700 mb-8">Limited peak-season availability. Book early for best dates.</p>
-          <form class="bg-white p-8 rounded-lg shadow">
+          <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="bg-white rounded-lg shadow p-4 md:p-6">
+              <h3 class="text-sm font-semibold text-gray-900 mb-1">How it works</h3>
+              <p class="text-sm text-gray-600 mb-4">Schedule a free, no‑obligation consultation at your home. We’ll walk your property, discuss design ideas, and provide an on‑the‑spot quote for your holiday lighting installation.</p>
+              <div class="calendly-inline-widget" data-url="https://calendly.com/litnoelteam/30min?hide_event_type_details=1&hide_gdpr_banner=1" style="min-width:320px;height:700px;"></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">Prefer to Call? We're Here for You</h3>
+                <a href={`tel:${companyData.phone}`} class="block text-lg font-bold text-red-700 hover:text-red-800">{companyData.phoneFormatted}</a>
+                <p class="text-sm text-gray-600 mt-1">Most calls answered live during business hours</p>
+              </div>
+              <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">Email Us</h3>
+                <a href={`mailto:${companyData.email}`} class="text-red-700 hover:text-red-800 font-medium">{companyData.email}</a>
+                <p class="text-sm text-gray-600 mt-1">We respond to emails within 24 hours</p>
+              </div>
+              <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="font-semibold text-gray-900 mb-2">Service Coverage</h3>
+                <p class="text-gray-700">West Georgia & the greater Metro Atlanta area</p>
+              </div>
+              <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="font-semibold text-gray-900 mb-4">Business Hours</h3>
+                <div class="space-y-2 text-gray-800">
+                  <div class="flex justify-between"><span>Mon–Fri</span><span>{companyData.hours.monday}</span></div>
+                  <div class="flex justify-between"><span>Saturday</span><span>{companyData.hours.saturday}</span></div>
+                  <div class="flex justify-between"><span>Sunday</span><span>{companyData.hours.sunday}</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form class="hidden bg-white p-8 rounded-lg shadow">
             <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
@@ -325,38 +390,71 @@ import { serviceLocations } from '../data/locations.ts';
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto text-center">
-          <h3 class="text-2xl font-bold mb-4">{companyData.name} — Christmas Light Installation</h3>
-          <div class="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 class="font-semibold mb-2">Contact</h4>
-              <p>Phone: {companyData.phoneFormatted}</p>
-              <p>Email: {companyData.email}</p>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-2">Hours</h4>
-              <p>Mon-Fri: 9:00 AM - 7:00 PM</p>
-              <p>Sat: 8:00 AM - 6:00 PM</p>
-              <p>Sun: 10:00 AM - 5:00 PM</p>
-            </div>
-            <div>
-              <h4 class="font-semibold mb-2">Service Areas</h4>
-              <p>Cobb County, Georgia</p>
-              <p>Marietta • Kennesaw • Smyrna</p>
-              <p>Acworth • Vinings • East Cobb</p>
-            </div>
-          </div>
-          <div class="border-t border-gray-700 pt-8">
-            <p class="text-sm text-gray-400">
-              Licensed & Insured • 5-Star Rated • Commercial-Grade LEDs
+    <footer class="bg-[#0b1620] text-white">
+      <div class="container mx-auto px-4 py-14">
+        <div class="grid md:grid-cols-4 gap-10">
+          <!-- Brand/About -->
+          <div>
+            <h3 class="text-xl font-bold mb-4">{companyData.name}</h3>
+            <p class="text-gray-300 text-sm leading-relaxed">
+              Professional Christmas light installation for homes and businesses. We design, install, maintain, and remove—so you simply enjoy a beautifully lit property all season.
             </p>
-            <div class="mt-4 space-x-4">
-              <a href="/privacy-policy" class="text-sm text-gray-400 hover:text-white">Privacy Policy</a>
-              <a href="/terms" class="text-sm text-gray-400 hover:text-white">Terms</a>
+          </div>
+
+          <!-- Contact Us -->
+          <div>
+            <h4 class="font-semibold mb-4">Contact Us</h4>
+            <div class="space-y-2 text-sm">
+              <div>
+                <div class="text-gray-400">Call Us</div>
+                <a href={`tel:${companyData.phone}`} class="font-semibold hover:text-red-300">{companyData.phoneFormatted}</a>
+              </div>
+              <div class="pt-2">
+                <div class="text-gray-400">Email Us</div>
+                <a href={`mailto:${companyData.email}`} class="font-medium hover:text-red-300">{companyData.email}</a>
+              </div>
+              <div class="pt-2">
+                <div class="text-gray-400">Service Area</div>
+                <div class="font-medium">Cobb • Paulding • Douglas • Carroll</div>
+              </div>
+              <div class="pt-4">
+                <div class="text-gray-400 mb-1">Business Hours</div>
+                <div class="flex justify-between"><span>Mon – Fri</span><span>{companyData.hours.monday}</span></div>
+                <div class="flex justify-between"><span>Saturday</span><span>{companyData.hours.saturday}</span></div>
+                <div class="flex justify-between"><span>Sunday</span><span>{companyData.hours.sunday}</span></div>
+              </div>
             </div>
           </div>
+
+          <!-- Service Areas -->
+          <div>
+            <h4 class="font-semibold mb-4">Service Areas</h4>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li>Cobb County</li>
+              <li>Paulding County</li>
+              <li>Douglas County</li>
+              <li>Carroll County</li>
+            </ul>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#services" class="text-gray-300 hover:text-white">Our Services</a></li>
+              <li><a href="#areas" class="text-gray-300 hover:text-white">Service Areas</a></li>
+              <li><a href="#contact" class="text-gray-300 hover:text-white">Get Free Quote</a></li>
+              <li><a href={`tel:${companyData.phone}`} class="text-gray-300 hover:text-white">Call Now</a></li>
+              <li class="pt-2"><a href="/privacy-policy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+              <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="container mx-auto px-4 py-6 text-sm text-gray-400 flex items-center justify-between">
+          <div>© {new Date().getFullYear()} {companyData.name}. All rights reserved.</div>
+          <div></div>
         </div>
       </div>
     </footer>
@@ -368,31 +466,120 @@ import { serviceLocations } from '../data/locations.ts';
 <script>
   // Smooth scrolling for anchor links
   document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = (e.target as HTMLAnchorElement).getAttribute('href');
-        const targetElement = targetId ? document.querySelector(targetId) : null;
-        
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
+    // Lazy load service area map on click (Leaflet + OSM)
+    const mapPlaceholder = document.getElementById('service-area-map-placeholder');
+    const mapContainer = document.getElementById('service-area-map-container');
 
-    // Form submission tracking
-    const form = document.querySelector('#contact form');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        console.log('Quote form submitted');
+    const loadLeaflet = (onReady) => {
+      // If already loaded
+      if (window.L) { onReady(); return; }
+      // Load CSS
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      css.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+      css.crossOrigin = '';
+      document.head.appendChild(css);
+      // Load JS
+      const js = document.createElement('script');
+      js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      js.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+      js.crossOrigin = '';
+      js.onload = onReady;
+      document.body.appendChild(js);
+    };
+
+    if (mapPlaceholder && mapContainer) {
+      mapPlaceholder.addEventListener('click', function() {
+        // Hide placeholder
+        mapPlaceholder.style.display = 'none';
+        // Show container and add loading indicator
+        mapContainer.classList.remove('hidden');
+        mapContainer.innerHTML = '<div class="flex items-center justify-center h-80 rounded-2xl bg-white/10"><div class="text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div><p class="text-white/90">Loading map...</p></div></div>';
+
+        loadLeaflet(() => {
+          // Prepare map element
+          mapContainer.innerHTML = '';
+          const mapEl = document.createElement('div');
+          mapEl.id = 'leaflet-service-area-map';
+          mapEl.style.width = '100%';
+          mapEl.style.height = '320px';
+          mapEl.style.borderRadius = '1rem';
+          mapContainer.appendChild(mapEl);
+
+          // Init map centered near Cobb County
+          const centerLat = 33.90;
+          const centerLng = -84.8;
+          const map = L.map('leaflet-service-area-map', { scrollWheelZoom: false }).setView([centerLat, centerLng], 8); // a bit more zoomed out by default
+          // Prevent map overlays/controls from covering header by scoping z-index
+          const pane = map.getPane('overlayPane');
+          if (pane) { pane.style.zIndex = '400'; }
+          const markerPane = map.getPane('markerPane');
+          if (markerPane) { markerPane.style.zIndex = '450'; }
+          // Lower control container z-index as well
+          const ctl = map.getContainer().querySelector('.leaflet-control-container');
+          if (ctl) { (ctl as HTMLElement).style.zIndex = '200'; }
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          // City markers
+          const cityPoints = [
+            // Cobb County
+            { name: 'Marietta', lat: 33.9526, lng: -84.5499 },
+            { name: 'Kennesaw', lat: 34.0234, lng: -84.6155 },
+            { name: 'Smyrna', lat: 33.88399, lng: -84.51438 },
+            { name: 'Mableton', lat: 33.8151, lng: -84.5613 },
+            { name: 'Powder Springs', lat: 33.8596, lng: -84.6838 },
+            { name: 'Austell', lat: 33.8126, lng: -84.6341 },
+            { name: 'Vinings', lat: 33.864, lng: -84.4633 },
+            // Paulding County
+            { name: 'Dallas', lat: 33.9237, lng: -84.8408 },
+            { name: 'Hiram', lat: 33.8757, lng: -84.7621 },
+            // Douglas County
+            { name: 'Douglasville', lat: 33.7515, lng: -84.7477 },
+            { name: 'Lithia Springs', lat: 33.7857, lng: -84.6605 },
+            // Carroll County
+            { name: 'Carrollton', lat: 33.5801, lng: -85.0766 },
+            { name: 'Villa Rica', lat: 33.7321, lng: -84.9191 },
+          ];
+          const markerBoundsPoints = [];
+          cityPoints.forEach(({name, lat, lng}) => {
+            L.marker([lat, lng]).addTo(map).bindPopup(name);
+            markerBoundsPoints.push([lat, lng]);
+          });
+          if (markerBoundsPoints.length) {
+            const markersBounds = L.latLngBounds(markerBoundsPoints as any);
+            map.fitBounds(markersBounds, { padding: [60, 60] });
+            // Zoom in a bit, then step back by one (net +2 from fit)
+            map.setZoom(map.getZoom() + 1);
+          }
+        });
       });
     }
+    const enableSmoothScroll = () => {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = (e.currentTarget && e.currentTarget.getAttribute) ? e.currentTarget.getAttribute('href') : null;
+          const targetElement = href ? document.querySelector(href) : null;
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      (window).requestIdleCallback(enableSmoothScroll);
+    } else {
+      setTimeout(enableSmoothScroll, 0);
+    }
+
+    // Form submission tracking
+    // (form removed in favor of Calendly; keep placeholder if reinstated later)
 
     // Phone click tracking
     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
