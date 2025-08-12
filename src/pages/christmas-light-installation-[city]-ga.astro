@@ -1,0 +1,24 @@
+---
+import CityLayout from '../layouts/CityLayout.astro';
+import { counties, getCityBySlug } from '../data/geo';
+
+export async function getStaticPaths() {
+  const paths = [] as Array<{ params: { city: string } }>;
+  for (const c of counties) {
+    for (const city of c.cities) {
+      paths.push({ params: { city: city.slugCity } });
+    }
+  }
+  return paths;
+}
+
+const { city } = Astro.params as { city: string };
+const result = getCityBySlug(city);
+if (!result) {
+  throw new Error(`Unknown city slug: ${city}`);
+}
+const { county, city: cityData } = result;
+---
+<CityLayout county={county} city={cityData} />
+
+

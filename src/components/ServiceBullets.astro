@@ -1,0 +1,22 @@
+<section class="py-16 bg-white" id="services">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-900">Your Complete Holiday Lighting Service</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[
+        ['Safe & Professional', 'No ladder risks or electrical hazards—our installs are safe and tidy.'],
+        ['Custom Design', 'Tailored to your property and preferences for stunning results.'],
+        ['Commercial‑Grade LEDs', 'Durable, bright, and energy‑efficient lights built for outdoor use.'],
+        ['Timers Included', 'Automatic schedules so your lights turn on and off each day.'],
+        ['In‑Season Maintenance', 'Fast support if anything goes out or shifts.'],
+        ['Takedown Included', 'Careful removal after the holidays—property left as found.'],
+      ].map(([title, desc]) => (
+        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">{title}</h3>
+          <p class="text-gray-700 text-sm">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+

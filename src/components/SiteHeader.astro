@@ -1,0 +1,32 @@
+---
+import { companyData } from '../data/company';
+---
+<header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-[2000]">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-12">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center">
+          <picture>
+            <source srcset="/banner-test.webp" type="image/webp" />
+            <img src="/banner-test.webp" alt="Lit Noel - Christmas Light Installation" class="h-8 w-auto" width="160" height="32" />
+          </picture>
+        </a>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#services" class="text-gray-700 hover:text-red-600">Services</a>
+        <a href="#process" class="text-gray-700 hover:text-red-600">How It Works</a>
+        <a href="#areas" class="text-gray-700 hover:text-red-600">Areas</a>
+        <a href="#faq" class="text-gray-700 hover:text-red-600">FAQ</a>
+        <a href="#contact" class="text-gray-700 hover:text-red-600">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href={`tel:${companyData.phone}`} class="hidden md:inline-block text-gray-700 hover:text-red-600">
+          {companyData.phoneFormatted}
+        </a>
+        <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold">Get Free Quote</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+

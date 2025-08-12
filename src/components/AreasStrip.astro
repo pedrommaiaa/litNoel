@@ -1,0 +1,70 @@
+---
+// Reuses the homepage Areas section: badges + lazy map
+---
+<section id="areas" class="py-16 bg-red-900 text-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">Proudly Serving West Georgia & Metro Atlanta</h2>
+      <p class="text-lg md:text-xl mb-8 opacity-90">Residential and commercial installations across West Georgia and the greater Atlanta metro area.</p>
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        {[
+          { name: 'Cobb County', href: '/christmas-light-installation-cobb-county-ga/' },
+          { name: 'Paulding County', href: '/christmas-light-installation-paulding-county-ga/' },
+          { name: 'Douglas County', href: '/christmas-light-installation-douglas-county-ga/' },
+          { name: 'Carroll County', href: '/christmas-light-installation-carroll-county-ga/' }
+        ].map((c) => (
+          <a href={c.href} class="bg-white/10 border-2 border-white/30 text-white px-6 py-3 rounded-lg text-base font-semibold shadow-md hover:bg-white/15 hover:border-white/50 transition-all duration-200">{c.name}</a>
+        ))}
+      </div>
+      <div class="flex justify-center mb-10">
+        <div class="w-full max-w-md sm:max-w-lg md:max-w-2xl">
+          <div id="as-map-placeholder" class="rounded-2xl shadow-lg w-full h-80 bg-white/10 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40" aria-label="Load interactive service area map">
+            <div class="text-center p-6"><p class="text-white/90 text-base md:text-lg font-medium">Tap to load an interactive map of our service coverage</p></div>
+          </div>
+          <div id="as-map-container" class="hidden"></div>
+          <noscript>
+            <div class="rounded-2xl shadow-lg w-full h-80 bg-white/20 flex items-center justify-center"><p class="text-white/90 text-center p-6">Map showing our coverage across West Georgia and the Atlanta metro area</p></div>
+          </noscript>
+        </div>
+      </div>
+      <p class="text-white/90 mb-4">Don't see your county? Give us a call—we may still be able to help!</p>
+      <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 py-3 rounded-lg text-base font-semibold transition-colors">Check Availability in Your Area</a>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ph = document.getElementById('as-map-placeholder');
+      const ct = document.getElementById('as-map-container');
+      if (!ph || !ct) return;
+      const loadLeaflet = (onReady) => {
+        if (window.L) return onReady();
+        const css = document.createElement('link'); css.rel='stylesheet'; css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
+        const js = document.createElement('script'); js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload=onReady; document.body.appendChild(js);
+      };
+      ph.addEventListener('click', function() {
+        ph.style.display='none'; ct.classList.remove('hidden');
+        ct.innerHTML = '<div class="flex items-center justify-center h-80 rounded-2xl bg-white/10"><div class="text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div><p class="text-white/90">Loading map...</p></div></div>';
+        loadLeaflet(() => {
+          ct.innerHTML='';
+          const el = document.createElement('div'); el.id='as-leaflet-map'; el.style.width='100%'; el.style.height='320px'; el.style.borderRadius='1rem'; ct.appendChild(el);
+          const center = [33.90, -84.8];
+          const map = L.map('as-leaflet-map', { scrollWheelZoom: false }).setView(center, 8);
+          const pane = map.getPane('overlayPane'); if (pane) pane.style.zIndex='400';
+          const control = map.getContainer().querySelector('.leaflet-control-container'); if (control) control.style.zIndex='200';
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
+          const pts = [
+            [33.9526,-84.5499],[34.0234,-84.6155],[33.88399,-84.51438],[33.8151,-84.5613],[33.8596,-84.6838],[33.8126,-84.6341],[33.864,-84.4633],
+            [33.9237,-84.8408],[33.8757,-84.7621],
+            [33.7515,-84.7477],[33.7857,-84.6605],
+            [33.5801,-85.0766],[33.7321,-84.9191]
+          ];
+          const bounds = [] as any[];
+          pts.forEach(([la,ln])=>{ L.marker([la,ln]).addTo(map); bounds.push([la,ln]); });
+          if (bounds.length){ const bb = L.latLngBounds(bounds as any); map.fitBounds(bb,{padding:[60,60]}); map.setZoom(map.getZoom()+1); }
+        });
+      });
+    });
+  </script>
+</section>
+
+

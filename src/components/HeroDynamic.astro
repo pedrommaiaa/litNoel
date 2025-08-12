@@ -1,0 +1,31 @@
+---
+import { companyData } from '../data/company';
+export interface Props { title: string; subhead: string }
+const { title, subhead } = Astro.props;
+---
+<section class="hero relative text-white min-h-screen flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 scale-110">
+      <picture>
+        <source srcset="/hero-background.webp" type="image/webp" />
+        <img src="/hero-background.webp" alt="Christmas light installation background" class="object-cover w-full h-full" fetchpriority="high" width="1920" height="1280" />
+      </picture>
+    </div>
+  </div>
+  <div class="container mx-auto px-4 relative z-10 w-full">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg">{title}</h1>
+      <p class="text-lg md:text-xl lg:text-2xl mb-8 text-white drop-shadow-md">{subhead}</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Get Free Quote</a>
+        <a href={`tel:${companyData.phone}`} class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Call {companyData.phoneFormatted}</a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-sm md:text-base">
+        <span class="flex items-center gap-2 drop-shadow-md">Licensed & Insured</span>
+        <span class="flex items-center gap-2 drop-shadow-md">Locally Owned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,17 @@
+---
+import CountyLayout from '../layouts/CountyLayout.astro';
+import { counties, getCountyBySlug } from '../data/geo';
+
+export async function getStaticPaths() {
+  return counties.map((c) => ({ params: { county: c.slugCounty } }));
+}
+
+const { county } = Astro.params as { county: string };
+const countyData = getCountyBySlug(county);
+if (!countyData) {
+  throw new Error(`Unknown county slug: ${county}`);
+}
+---
+<CountyLayout county={countyData} />
+
+

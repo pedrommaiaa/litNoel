@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { companyData } from '../data/company';
 ---
 
 <Layout title="Page Not Found | WaterBoys Pressure Washing">
-	<Header />
+    <SiteHeader />
 	
 	<!-- 404 Error Section -->
 	<main class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center px-4 py-16">
@@ -93,7 +93,7 @@ import { companyData } from '../data/company';
 		</div>
 	</main>
 	
-	<Footer />
+    <SiteFooter />
 </Layout>
 
 <style>
