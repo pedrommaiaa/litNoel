@@ -1,0 +1,16 @@
+---
+import { companyData } from '../data/company';
+export interface Props { headline?: string }
+const { headline = 'Ready to Light Up Your Holidays?' } = Astro.props;
+---
+<section class="py-10 bg-gradient-to-r from-red-600 to-green-600 text-white">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4">{headline}</h2>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#contact" class="bg-white text-red-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold">Get Free Quote</a>
+      <a href={`tel:${companyData.phone}`} class="border-2 border-white text-white hover:bg-white hover:text-red-600 px-6 py-3 rounded-lg font-semibold">Call {companyData.phoneFormatted}</a>
+    </div>
+  </div>
+</section>
+
+
