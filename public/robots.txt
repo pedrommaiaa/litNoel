@@ -2,10 +2,10 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://yourdomain.com
+Host: https://litnoel.com
 
 # Sitemaps
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://litnoel.com/sitemap.xml
 
 # Crawl-delay (optional)
 Crawl-delay: 1
