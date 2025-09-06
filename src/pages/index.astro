@@ -10,18 +10,20 @@ import HowItWorks from '../components/HowItWorks.astro';
 import AreasStrip from '../components/AreasStrip.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import ContactSchedule from '../components/ContactSchedule.astro';
+import PhotoStrip from '../components/PhotoStrip.astro';
 ---
 
 <Layout title={`${companyData.tagline} | ${companyData.name}`} description={companyData.description} ogTitle={`${companyData.tagline} | ${companyData.name}`} ogDescription={companyData.description}>
   <main>
     <SiteHeader />
-    <div class="pt-12"></div>
+    <!-- remove spacer; header padding handled globally -->
     <HeroDynamic
       title="Professional Christmas Light Installation"
       subhead="Custom outdoor Christmas lights installation for homes and businesses, featuring durable, commercial‑grade, energy‑efficient LED lighting, with all‑season maintenance and hassle‑free removal."
     />
     <Problems />
     <ServiceBullets />
+    <PhotoStrip />
     <HowItWorks />
     <AreasStrip />
     <FAQAccordion />

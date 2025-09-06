@@ -1,7 +1,8 @@
 ---
+import { companyData } from '../data/company';
 // Reuses the homepage Areas section: badges + lazy map
 ---
-<section id="areas" class="py-16 bg-red-900 text-white">
+<section id="areas" class="py-16 section-mobile-compact bg-red-900 text-white">
   <div class="container mx-auto px-4">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Proudly Serving West Georgia & Metro Atlanta</h2>
@@ -27,8 +28,9 @@
           </noscript>
         </div>
       </div>
-      <p class="text-white/90 mb-4">Don't see your county? Give us a call—we may still be able to help!</p>
-      <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 py-3 rounded-lg text-base font-semibold transition-colors">Check Availability in Your Area</a>
+      <p class="text-white/90 mb-2">Also serving: <a href="/christmas-light-installation-cobb-county-ga/" class="underline hover:text-white">Cobb</a>, <a href="/christmas-light-installation-paulding-county-ga/" class="underline hover:text-white">Paulding</a>, <a href="/christmas-light-installation-douglas-county-ga/" class="underline hover:text-white">Douglas</a>, <a href="/christmas-light-installation-carroll-county-ga/" class="underline hover:text-white">Carroll</a></p>
+      <p class="text-white/90 mb-4">Don't see your county? Call us—we may still be able to help.</p>
+      <a href={`tel:${companyData?.phone ?? '+14707806868'}`} class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-6 py-3 rounded-lg text-base font-semibold transition-colors">Call {companyData?.phoneFormatted ?? '(470) 780-6868'}</a>
     </div>
   </div>
   <script>
@@ -36,8 +38,8 @@
       const ph = document.getElementById('as-map-placeholder');
       const ct = document.getElementById('as-map-container');
       if (!ph || !ct) return;
-      const loadLeaflet = (onReady) => {
-        if (window.L) return onReady();
+      const loadLeaflet = (onReady: () => void) => {
+        if ((window as any).L) return onReady();
         const css = document.createElement('link'); css.rel='stylesheet'; css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
         const js = document.createElement('script'); js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'; js.onload=onReady; document.body.appendChild(js);
       };
@@ -45,6 +47,7 @@
         ph.style.display='none'; ct.classList.remove('hidden');
         ct.innerHTML = '<div class="flex items-center justify-center h-80 rounded-2xl bg-white/10"><div class="text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div><p class="text-white/90">Loading map...</p></div></div>';
         loadLeaflet(() => {
+          const L = (window as any).L;
           ct.innerHTML='';
           const el = document.createElement('div'); el.id='as-leaflet-map'; el.style.width='100%'; el.style.height='320px'; el.style.borderRadius='1rem'; ct.appendChild(el);
           const center = [33.90, -84.8];

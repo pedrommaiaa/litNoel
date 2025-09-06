@@ -9,7 +9,7 @@ import HowItWorks from '../components/HowItWorks.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import ContactSchedule from '../components/ContactSchedule.astro';
 import AreasStrip from '../components/AreasStrip.astro';
-import { makeCountyTitle, makeCountyDesc, countyIntro } from '../data/seo';
+import { makeCountyTitle, makeCountyDesc, countyIntro, countyLocalCopy } from '../data/seo';
 import type { CountyInfo } from '../data/geo';
 
 export interface Props { county: CountyInfo }
@@ -36,8 +36,33 @@ const description = makeCountyDesc(county.name);
     provider: { '@type': 'LocalBusiness', name: 'Lit Noel' }
   })} />
   <SiteHeader />
-  <div class="pt-12"></div>
+  
   <HeroDynamic title={`Christmas Light Installation in ${county.name}, GA`} subhead={countyIntro(county.name)} />
+
+  <!-- Visual example for county (premium entrance or roofline) -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <picture>
+        <source srcset="/photos/photo-1-800.webp 800w, /photos/photo-1-1200.webp 1200w, /photos/photo-1-1600.webp 1600w, /photos/photo-1-2000.webp 2000w" type="image/webp" />
+        <img src="/photos/photo-1-1200.webp" alt={`Holiday wreath and garland lighting on gated entrance in ${county.name}`} class="w-full h-72 object-cover rounded-lg shadow" loading="lazy" width="1200" height="800" />
+      </picture>
+    </div>
+  </section>
+
+  <!-- County Local Copy Block -->
+  <section class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-gray-800 leading-relaxed text-lg">
+        {countyLocalCopy(county).split('\n').map((para) => (<p class="mb-4">{para}</p>))}
+        <p class="mb-2">Explore cities we serve in {county.name}:</p>
+        <ul class="list-disc ml-5">
+          {county.cities.slice(0, 6).map((c) => (
+            <li><a class="text-red-700 hover:text-red-800 underline" href={`/christmas-light-installation-${c.slugCity}-ga/`}>{c.name} Christmas Light Installation</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- Cities We Serve in County -->
   <section class="py-16 bg-white">

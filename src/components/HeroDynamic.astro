@@ -17,8 +17,8 @@ const { title, subhead } = Astro.props;
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg">{title}</h1>
       <p class="text-lg md:text-xl lg:text-2xl mb-8 text-white drop-shadow-md">{subhead}</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-        <a href="#contact" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Get Free Quote</a>
-        <a href={`tel:${companyData.phone}`} class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Call {companyData.phoneFormatted}</a>
+        <a href={`tel:${companyData.phone}`} class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Call {companyData.phoneFormatted}</a>
+        <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-red-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors drop-shadow-md">Get My Free Quote</a>
       </div>
       <div class="flex flex-wrap justify-center gap-6 text-sm md:text-base">
         <span class="flex items-center gap-2 drop-shadow-md">Licensed & Insured</span>
