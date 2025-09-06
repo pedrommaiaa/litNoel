@@ -140,20 +140,23 @@ const structuredData = {
 		<!-- Structured Data -->
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		
-		<!-- Google Analytics - REPLACE WITH YOUR TRACKING ID -->
+		<!-- Google Analytics 4 -->
 		<script is:inline>
 			// Check if user has opted out before loading analytics
 			if (localStorage.getItem('analytics-opted-out') !== 'true') {
-				// Load Google Analytics - REPLACE 'YOUR-GA-ID' with your actual tracking ID
+				// Google Analytics - Active tracking
 				var script = document.createElement('script');
 				script.async = true;
-				script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID';
+				script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7EM3XKTDX2';
 				document.head.appendChild(script);
 				
 				window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments);}
 				gtag('js', new Date());
-				gtag('config', 'YOUR-GA-ID');
+				gtag('config', 'G-7EM3XKTDX2', {
+					page_title: document.title,
+					page_location: window.location.href
+				});
 			}
 		</script>
 	</head>
