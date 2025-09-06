@@ -62,13 +62,13 @@ export const companyData = {
   
   // Business Hours (Seasonal Operation)
   hours: {
-    monday: "9:00 AM - 7:00 PM",
-    tuesday: "9:00 AM - 7:00 PM", 
-    wednesday: "9:00 AM - 7:00 PM",
-    thursday: "9:00 AM - 7:00 PM",
-    friday: "9:00 AM - 7:00 PM",
-    saturday: "8:00 AM - 6:00 PM",
-    sunday: "10:00 AM - 5:00 PM"
+    monday: "7:00 AM - 7:00 PM",
+    tuesday: "7:00 AM - 7:00 PM", 
+    wednesday: "7:00 AM - 7:00 PM",
+    thursday: "7:00 AM - 7:00 PM",
+    friday: "7:00 AM - 7:00 PM",
+    saturday: "9:00 AM - 5:00 PM",
+    sunday: "9:00 AM - 5:00 PM"
   },
   
   // Social Media - ADD YOUR SOCIAL PROFILES
