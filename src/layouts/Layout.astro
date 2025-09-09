@@ -140,6 +140,36 @@ const structuredData = {
 		<!-- Structured Data -->
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		
+		<!-- URL Redirects for GitHub Pages -->
+		<script is:inline>
+			// Handle redirects for GitHub Pages (no server-side redirects available)
+			(function() {
+				var currentUrl = window.location.href;
+				var canonicalUrl = 'https://litnoel.com' + window.location.pathname + window.location.search + window.location.hash;
+
+				// Redirect HTTP to HTTPS
+				if (window.location.protocol === 'http:') {
+					window.location.replace(canonicalUrl);
+					return;
+				}
+
+				// Redirect www to non-www
+				if (window.location.hostname === 'www.litnoel.com') {
+					window.location.replace(canonicalUrl);
+					return;
+				}
+
+				// Also handle any other domain variations that might point to this site
+				if (window.location.hostname !== 'litnoel.com' && window.location.hostname !== 'www.litnoel.com') {
+					// Only redirect if it looks like it should be our domain
+					if (window.location.hostname.includes('litnoel')) {
+						window.location.replace(canonicalUrl);
+						return;
+					}
+				}
+			})();
+		</script>
+
 		<!-- Google Analytics 4 -->
 		<script is:inline>
 			// Check if user has opted out before loading analytics
@@ -149,7 +179,7 @@ const structuredData = {
 				script.async = true;
 				script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7EM3XKTDX2';
 				document.head.appendChild(script);
-				
+
 				window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments);}
 				gtag('js', new Date());
